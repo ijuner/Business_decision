@@ -1,1 +1,25 @@
 https://www.kaggle.com/code/yousefghanem12345678/yousef-ghane-and-nuria-esther-gonzalez-capstone/notebook
+demo-2
+Neighborhood Matters: Prices vary significantly across different areas.
+Room Type Impact: Entire homes are priced higher than private/shared rooms.
+Guest Demand Trends: More reviews and high availability indicate popular listings.
+
+Budget-Friendly Listings (< $150): Attract more guests and get more reviews.
+Mid-Range Listings ($150 - $250): Balance affordability and profit.
+Luxury Listings (> $250): Target premium travelers but expect fewer bookings.
+
+Peak Season (July): Increase prices due to higher demand.
+Low Season (August): Offer discounts to maintain occupancy.
+Other Months: Adjust pricing based on local events and trends.
+
+200-300 Days Per Year: Optimal for maximizing revenue.
+Too Few Days: Reduces booking chances and visibility in search results.
+365 Days Availability: Useful for professional hosts but may require dynamic pricing.
+
+Check Similar Listings: Compare prices in your neighborhood.
+Adjust Dynamically: Lower prices if bookings are slow, increase if demand is high.
+Use a Price Prediction Model: Helps determine competitive rates based on reviews, location, and availability.
+
+Lower-Priced Listings Get More Reviews: Enhancing visibility.
+More Reviews → Higher Bookings: Trust factor leads to better ranking.
+Host Responsiveness & Service: Key to earning good reviews and repeat guests.
