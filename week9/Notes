@@ -44,3 +44,68 @@ Goal: Wrap project with clear storytelling and reproducibility.
 Deliver well-documented GitHub repo with modular scripts and notebooks.
 
 Include a sample README case narrative: “How we saved X% churned users.”
+
+1. RFM Scoring (Recency, Frequency, Monetary)
+import pandas as pd
+
+# Sample structure: df = customer_id, transaction_date, sales_amount
+df['transaction_date'] = pd.to_datetime(df['transaction_date'])
+snapshot_date = df['transaction_date'].max() + pd.Timedelta(days=1)
+
+rfm = df.groupby('customer_id').agg({
+    'transaction_date': lambda x: (snapshot_date - x.max()).days,  # Recency
+    'customer_id': 'count',                                        # Frequency
+    'sales_amount': 'sum'                                          # Monetary
+}).rename(columns={
+    'transaction_date': 'Recency',
+    'customer_id': 'Frequency',
+    'sales_amount': 'Monetary'
+})
+
+
+2. Churn Tag Labeling (binary supervised model target)
+
+def label_churn(last_purchase, snapshot_date, churn_threshold=60):
+    return int((snapshot_date - last_purchase).days > churn_threshold)
+
+df_last = df.groupby('customer_id')['transaction_date'].max().reset_index()
+df_last['churn_label'] = df_last['transaction_date'].apply(
+    lambda x: label_churn(x, snapshot_date)
+)
+
+3. Feature Engineering: Category Engagement Score
+
+pivot = df.pivot_table(
+    index='customer_id',
+    columns='product_category',
+    values='transaction_id',
+    aggfunc='count',
+    fill_value=0
+).apply(lambda x: x / x.sum(), axis=1)  # Normalize as percentage
+pivot.columns = [f'cat_{col}_engagement' for col in pivot.columns]
+
+4. Classification Model (e.g., XGBoost or Logistic Regression)
+from sklearn.model_selection import train_test_split
+from xgboost import XGBClassifier
+
+X = feature_df.drop(columns=['churn_label'])
+y = feature_df['churn_label']
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3)
+
+model = XGBClassifier()
+model.fit(X_train, y_train)
+print("Accuracy:", model.score(X_test, y_test))
+
+5. Visualize Churn Drivers
+import matplotlib.pyplot as plt
+importances = model.feature_importances_
+features = X.columns
+
+plt.barh(features, importances)
+plt.title("Top Churn Predictors")
+plt.tight_layout()
+plt.show()
+
+
+
+
