@@ -1,0 +1,46 @@
+Future:
+Project roadmap to scale up Loblaw customer retention analytics project 
+using PySpark, Google Cloud, and machine learning components
+Phase 1 – Data Engineering & Scalability---------------------------------------------------
+Goal: Transition your notebook-based analysis to a distributed pipeline.
+
+Move raw CSV data to Google Cloud Storage (GCS).
+
+Set up a PySpark pipeline on Dataproc to handle feature engineering:
+
+Purchase frequency, RFM scores, product seasonality.
+
+Window functions for trend detection (7-day/30-day cycles).
+
+Write cleaned data to BigQuery for easy access and analytics.
+
+Phase 2 – Machine Learning Modeling---------------------------------------------------
+Goal: Build churn prediction models and validate performance.
+
+Use BigQuery ML or export features to Vertex AI for modeling.
+
+Apply algorithms like Logistic Regression, XGBoost, or LightGBM for churn classification.
+
+Split users by behavior clusters using KMeans or DBSCAN.
+
+Evaluate performance via ROC-AUC, F1, and Precision@k.
+
+Visualize confusion matrix and user segments via Looker Studio.
+
+Phase 3 – Automation & Serving---------------------------------------------------
+Goal: Automate the pipeline and simulate real-time decision workflows.
+
+Orchestrate ETL + ML pipeline using Cloud Composer (Airflow).
+
+Save models to GCS and deploy using Vertex AI prediction endpoints.
+
+Create dashboards showing top churn signals and cohort movements.
+
+Simulate “next-best action” strategies for marketing or loyalty interventions.
+
+Phase 4 – Documentation & Delivery---------------------------------------------------
+Goal: Wrap project with clear storytelling and reproducibility.
+
+Deliver well-documented GitHub repo with modular scripts and notebooks.
+
+Include a sample README case narrative: “How we saved X% churned users.”
